@@ -1,0 +1,88 @@
+# Core
+spring:
+  application:
+    name: campaign-engine
+    version: 0.0.1
+  profiles.active: local
+  main:
+    web-environment: true
+
+  jackson:
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+  profiles:
+    active: local
+
+#swagger:
+#    title: Campaign Engine
+#    description: Campaign Engine API
+#    version: 0.0.1
+#    contact: Pegasus Team / Sakaar Team
+#    termsOfServiceUrl:
+#    license:
+#    licenseUrl:
+#
+#custom.rest.connection:
+#   connection-request-timeout: 3000
+#   connect-timeout: 3000
+#   read-timeout: 3000
+
+---
+spring:
+  profiles: local
+
+  datasource:
+    dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+    url: jdbc:mysql://192.168.99.100:3306/TEST
+    #url: jdbc:mysql://192.168.99.100:3306/person?useUnicode=true&characterEncoding=utf8&noAccessToProcedureBodies=true
+    username: root
+    password: campaign@dm1n
+
+    poolName: PersonalizeHikariCP
+    maximumPoolSize: 20
+    cachePrepStmts: true
+    prepStmtCacheSize: 250
+    prepStmtCacheSqlLimit: 2048
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: MYSQL
+    openInView: false
+    show_sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+
+    properties:
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+
+#  external.url:
+#    campaign-action:  http://alpha-api-campaign-action.tmn-dev.com
+#    campaign-action-route: /campaign-action/actions
+#    enable: 1
+#    kyc:  http://alpha-internal-customer-profile-service.tmn-dev.com/internal-api/v1
+#
+#  maxRetries:
+#    coreGetProfileInfo:  3
+#    externalService: 3
+#
+#  coreService:
+#    endpoint: https://alpha-corebus-api-new-coreservice.tmn-dev.com/core-service-web
+#    xAccessKey: 1881A99AAF2C267E0FE976AED4C53CBE3C4DAA4D2D094846B48ECA33DE99FB03
+#
+#  camp:
+#    serviceName: WeCard
+#    sms.from: TrueMoney
+server:
+  port: 8095
+
+security:
+  user:
+    name: test
+    password: pass
+
+
+
+
